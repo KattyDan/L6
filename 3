@@ -1,0 +1,13 @@
+import pandas as pd 
+import numpy as np 
+df = pd.read.csv('students.csv')
+
+print("\nПропуски в данных:")
+print(df.isnull().sum()) #проверка кол-во пропусков в каждом столбце
+
+df['Score'] = df['Score'].fillna(df['Score'].mean()) # заполнение пропусков в столбце Score ср.знач
+
+df = df.dropna(subset=['Group']) # удаление строки, где есть пропуски в столбце Group
+
+print("\nДанные после обработки пропусков:")
+print(df.isnull().sum())
