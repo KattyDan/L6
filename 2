@@ -1,0 +1,19 @@
+import pandas as pd 
+import numpy as np 
+df = pd.read.csv('students.csv')
+
+high_score_students = df[df['Score'] > 80] # выбор студентов с баллом выше 80
+print("\nСтуденты с баллом > 80:")
+print(high_score_students)
+
+sorted_students = high_score_students.sort_values('Score', ascending=False ) # сортировка их по убыванию балла
+print("\nСортировка по убыванию балла:")
+print(sorted_students)
+
+oldest_student = df.loc[df['Age'].idxmax()] #  самый старший студент, df.loc[] метрд для выборки данных по меткам
+print("\nСамый старший студент:")
+print(oldest_student)
+
+youngest_student = df.loc[df['Age'].idxmin()]
+print("\nСамый младший студент:")
+print(youngest_student)
