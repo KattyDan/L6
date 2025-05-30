@@ -1,0 +1,20 @@
+import pandas as pd # Импорт. библиотеки pandas для работы с данными
+
+df = pd.read_csv('students.csv') # Загрузка данных из CSV-файла в переменную df (DataFrame)
+
+
+print("Первые 5 строк данных:")
+print(df.head()) # Выводим первые 5 строк head()
+
+print("\nИнформация о данных:")
+print(df.info()) # Вывод общ.инфо о данных (типы столбцов, кол-во знач.)
+
+print("\nСтатистика данных:")
+print(df.describe()) # Вывод статистики по числовым столбцам (среднее, минимум, максимум)
+
+mean_score = df['Score'].mean() # mean() сред.ариф
+print(f"\nСредний балл студентов: {mean_score:.2f}")
+
+group_counts = df['Group'].value_counts() # Вычисление кол-во студентов в каждой группе
+print("\nКоличество студентов по группам:")
+print(group_counts)
