@@ -1,0 +1,40 @@
+
+import matplotlib.pyplot as plt # импорт библиотеки для рисования графиков
+
+# список оценок студентов (баллы)
+scores = [60, 70, 75, 80, 85, 90, 95, 100, 100, 85, 75, 70, 90, 80, 65, 60, 95, 85]
+
+#  список групп, к которым относятся студенты (та же длина, что и у scores)
+groups = [
+    'A', 'A', 'A', 'A', 'A', 'A',   # первые 6 студентов из группы A
+    'B', 'B', 'B', 'B', 'B', 'B',   # следующие 6 — группа B
+    'C', 'C', 'C', 'C', 'C', 'C'    # последние 6 — группа С
+    #  Гистограмма баллов
+
+plt.hist(scores, bins=5, color='orange', edgecolor='red') #hist строим гистограмму
+plt.title("Гистограмма баллов")         # Заголовок
+plt.xlabel("Балл")                      # Подпись оси X
+plt.ylabel("Количество студентов")      # Подпись оси Y
+plt.show()                               # Показать график
+
+
+# создание словаря, чтобы собрать баллы по каждой группе
+group_scores = {}
+
+# сложение баллов по группам
+for score, group in zip(scores, groups):
+    if group not in group_scores:
+        group_scores[group] = []        # если группа новая — создаем список
+    group_scores[group].append(score)   # добавляем балл в список группы
+
+# считаем ср.значение для каждой группы
+average_scores = {}
+for group in group_scores:
+    average_scores[group] = sum(group_scores[group]) / len(group_scores[group]) #bar столбчатая диагр.
+
+# строим столбчатую диаграмму
+plt.bar(average_scores.keys(), average_scores.values(), color='yellow')
+plt.title("Средний балл по группам")
+plt.xlabel("Группа")
+plt.ylabel("Средний балл")
+plt.show()
