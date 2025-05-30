@@ -1,0 +1,14 @@
+import pandas as pd 
+import numpy as np 
+df = pd.read.csv('students.csv')
+
+group_stats = df.groupby('Group').agg({ # групировка данных по группам и вычисление ср.балла и медианный возраст
+    'Score': 'mean',
+    'Age': 'median'
+})
+print("\nСредний балл и медианный возраст по группам:")
+print(group_stats)
+
+df['Passed'] = df['Score'].apply(lambda x: 1 if x >= 60 else 0) #добавление столбца Passed, lambda анонимная ф-я
+print("\nДанные с колонкой Passed:")
+print(df.head()) #первые n строк
